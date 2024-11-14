@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
@@ -11,11 +11,13 @@ import Reports from "./components/Reports";
 import Profile from "./components/Profile";
 import Settings from "./components/Settings";
 import Help from "./components/Help";
+import Modal from './components/modals/Modal';
+
 function App() {
   return (
   <Router>
     <Routes>
-      <Route path="/" element={<Dashboard />} />
+      <Route path="/" element={<Dashboard />}/>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/books" element={<BookList />} />
@@ -26,6 +28,8 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/help" element={<Help />} />
+      <Route path="/dash" element={<Dashboard />}/>
+      {/* <Route path="/modals/modal" element={<Modal/>}/> */}
     </Routes>
   </Router>
   )

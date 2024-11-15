@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 function Login(){
     const navigate = useNavigate();
 
-    const goToDash = () => {
+    const goToDash = (event) => {
+      event.preventDefault(); 
         navigate('/dash');
     };
 
@@ -13,7 +14,7 @@ function Login(){
     //    <StyledWrapper>
     <div className="auth-container">
       <div className="auth-box">
-        <div className="auth-left opacity-80">
+        <div className="auth-left opacity-100">
         <a href="/landing"><button className="back-button ml-0 " ><i className="fa-solid fa-arrow-left"></i> Back to website </button></a>
           <div className="auth-left-content">
             <h2>Hold the books, hold the stories.</h2>
@@ -23,13 +24,13 @@ function Login(){
         <div className="auth-right">
           <h2 className="auth-title">Sign in</h2>
           
-          <form className="auth-form">
+          <form className="auth-form" onSubmit={goToDash}>
             {/* <div className="form-group"> */}
-              <input type="text" placeholder="Username / Email" required />
+              <input type="text" placeholder="Username / Email" required/>
             {/* </div> */}
-            <input type="password" placeholder="Enter your password" required />
-            <button type="submit" onClick={goToDash}>Login</button>
-            <p>Don't have an account? <a href="/register">SignUp</a></p>
+            <input type="password" placeholder="Enter your password" required/>
+            <button type="submit">Login</button>
+            <p>Don't have an account? <a href="/register"><b>SignUp</b></a></p>
           </form>
           <div className="social-login">
             <button>

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Landing from "./components/Landing";
-import Dashboard from "./components/Dashboard copy";
+import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import BookList from "./components/BookList";

@@ -18,9 +18,9 @@ function SignUp(){
     <div className="auth-container">
       <div className="auth-box">
         <div className="auth-left">
-          <button className="back-button">Back to website</button>
+        <a href="/landing"><button className="back-button ml-0 " ><i className="fa-solid fa-arrow-left"></i> Back to website </button></a>
           <div className="auth-left-content">
-            <h2>Capturing Moments, Creating Memories</h2>
+            <h2>Hold the books, Hold the stories.</h2>
           </div>
         </div>
         <div className="auth-right">

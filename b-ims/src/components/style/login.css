@@ -22,22 +22,26 @@
 
 .auth-left {
   flex: 1;
-  background-image: url('https://path/to/your/image.jpg');
+  background-image: url('/src/components/images/book-img.jpeg');
   background-size: cover;
   background-position: center;
   position: relative;
   padding: 20px;
+
 }
+
 
 .auth-left-content {
   position: absolute;
   bottom: 30px;
   color: #fff;
+  margin-left: 20px;
+  opacity: 100% ;
 }
 
 .auth-left-content h2 {
   font-size: 24px;
-  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .auth-right {

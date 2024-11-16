@@ -11,33 +11,33 @@ function SignUp(){
 
     const goToLogIn = () => {
         navigate('/login');
-      };
+    };
 
     return (
     //    <StyledWrapper>
     <div className="auth-container">
       <div className="auth-box">
         <div className="auth-left">
-          <button className="back-button">Back to website</button>
+        <a href="/landing"><button className="back-button ml-0 " ><i className="fa-solid fa-arrow-left"></i> Back to website </button></a>
           <div className="auth-left-content">
-            <h2>Capturing Moments, Creating Memories</h2>
+            <h2>Hold the books, Hold the stories.</h2>
           </div>
         </div>
         <div className="auth-right">
           <h2 className="auth-title">Create an account</h2>
           
-          <form className="auth-form">
+          <form className="auth-form" onSubmit={goToLogIn}>
             <div className="form-group">
-              <input type="text" placeholder="First Name" required />
-              <input type="text" placeholder="Last Name" required />
+              <input type="text" placeholder="First Name" required/>
+              <input type="text" placeholder="Last Name" required/>
             </div>
             <input type="email" placeholder="Email" required />
-            <input type="password" placeholder="Enter your password" required />
+            <input type="password" placeholder="Enter your password" required/>
             <div className="terms">
-              <input type="checkbox" />
+              <input type="checkbox" required/>
               <p>I agree to the <a href="#">Terms & Conditions</a></p>
             </div>
-            <button type="submit" onClick={goToLogIn}>Create account</button>
+            <button type="submit"  >Create account</button>
             <p>Already have an account? <a href="/login">Log in</a></p>
           </form>
           <div className="social-login">

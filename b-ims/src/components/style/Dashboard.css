@@ -1,0 +1,10 @@
+.fa-user {
+    color: #353535;
+    transition: background-color 0.3s ease;
+  }
+
+#profile-icon:hover {
+    color: #8088ff; /* Darker shade on hover */
+    cursor: pointer;
+}
+  

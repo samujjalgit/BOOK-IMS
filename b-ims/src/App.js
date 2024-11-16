@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Landing from "./components/Landing";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -17,7 +18,7 @@ function App() {
   return (
   <Router>
     <Routes>
-      <Route path="/" element={<Dashboard />}/>
+      <Route path="/" element={<Landing />}/>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/books" element={<BookList />} />
@@ -29,6 +30,7 @@ function App() {
       <Route path="/settings" element={<Settings />} />
       <Route path="/help" element={<Help />} />
       <Route path="/dash" element={<Dashboard />}/>
+      <Route path="/landing" element={<Landing />}/>
       {/* <Route path="/modals/modal" element={<Modal/>}/> */}
     </Routes>
   </Router>

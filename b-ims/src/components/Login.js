@@ -2,13 +2,28 @@ import React from "react";
 import styled from 'styled-components';
 import './style/login.css';
 import { useNavigate } from "react-router-dom";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "./firebase";
+import {toast} from "react-toastify";
 function Login(){
-    const navigate = useNavigate();
+  function googleLogin(){
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider).then(async(result) => {
+      console.log(result);
+      if (result.user){
+        toast.success('User looged in Successfully', {
+          position: "top-center",
+        });
+        window.location.href = "/profile";
+      }
+    });
+  }
+    // const navigate = useNavigate();
 
-    const goToDash = (event) => {
-      event.preventDefault(); 
-        navigate('/dash');
-    };
+    // const goToDash = (event) => {
+    //   // event.preventDefault(); 
+    //     navigate('/dash');
+    // };
 
     return (
     //    <StyledWrapper>
@@ -24,7 +39,7 @@ function Login(){
         <div className="auth-right">
           <h2 className="auth-title">Sign in</h2>
           
-          <form className="auth-form" onSubmit={goToDash}>
+          <form className="auth-form" >
             {/* <div className="form-group"> */}
               <input type="text" placeholder="Username / Email" required/>
             {/* </div> */}
@@ -33,12 +48,12 @@ function Login(){
             <p>Don't have an account? <a href="/register"><b>SignUp</b></a></p>
           </form>
           <div className="social-login">
-            <button>
+            <button onClick={googleLogin}>
               <i className="fab fa-google"></i> Google
             </button>
-            <button>
+            {/* <button>
               <i className="fab fa-apple"></i> Apple
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

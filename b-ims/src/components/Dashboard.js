@@ -1,32 +1,34 @@
 import React from 'react';
 // import './style/landing.css';
 import './style/Dashboard.css';
+import './style/landing.css';
 import { useNavigate } from 'react-router-dom';
 function dashboard(){
   const navigate = useNavigate();
 
-  const goToLanding = () => {
-    navigate("/landing");
+  const goToAddEditBook = () => {
+    navigate("/add-edit-book");
   }
-
   const goToProfile = () => {
     navigate("/profile");
   }
   
   return (
+    <div className="dashboard-container">
+    {/* Header Section */}
+    <header className="dashboard-header">
+      <h1 className="dashboard-title">B-IMS</h1>
+      <nav className="dashboard-nav">
+        <button onClick={goToAddEditBook}>Inventory</button>
+        <button onClick={goToProfile}>Profile</button>
+      </nav>
+    </header>
 
-    <div className="container">
-      <div className="row">
-        <div className="header md-12">
-          <h1 className="text-center">Welcome to my website</h1>
-          <button id="btn" onClick={goToLanding}>Back to LogIn</button>
-          <div className="link-container">
-            <i className="fa-duotone fa-solid fa-user"
-            onClick={goToProfile} ></i>
-          </div>
-        </div>
-      </div>
-    </div>
+    {/* Main Content */}
+    <main className="dashboard-main">
+      
+    </main>
+  </div>
   )
 }
 export default dashboard;

@@ -10,11 +10,13 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
+    "firebase": "^11.0.2",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.5",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.6",
     "styled-components": "^6.1.13",
     "tailwindcss-motion": "^0.4.1-beta",
     "web-vitals": "^2.1.4"

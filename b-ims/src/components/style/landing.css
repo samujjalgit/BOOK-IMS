@@ -67,8 +67,10 @@ Dashboard.css
 .dashboard-nav button {
   margin-left: 20px;
   padding: 10px 20px;
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
+  border-radius: 8px;
+  
 }
 
 /* Main Content */

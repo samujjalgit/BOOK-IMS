@@ -1,10 +1,123 @@
-.fa-user {
-    color: #353535;
-    transition: background-color 0.3s ease;
+/* General styles */
+.dashboard-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+  }
+  
+  /* Dropdown container */
+  .dropdown-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  /* Dropdown menu styling */
+  .dropdown-menu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 180px;
+    list-style: none;
+    padding: 15px 0;
+    margin: 0;
+    display: block; /* Ensure dropdown is visible */
+  }
+  
+  .dropdown-menu li {
+    padding: 10px 15px;
+    font-size: 15px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .dropdown-menu li:hover {
+    background-color: #f1f1f1;
+  }
+  .books-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .book-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .book-card h1 {
+    margin-bottom: 10px;
+    color: white;
+    font-size: 24px;
   }
 
-#profile-icon:hover {
-    color: #8088ff; /* Darker shade on hover */
+  .title-head{
+    background-color: #9ca4f9;
+    border-radius: 8px;
+    padding: 12px;
+  }
+  
+  .book-card p {
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  .book-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-}
+    transition: 0.2s;
+  }
+  
+  .book-card.selected {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+  }
+  
+  .remove-actions {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .btn-remove {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-remove:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .btn-edit{
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border-radius: 4px;
+  }
+  
   

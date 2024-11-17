@@ -1,0 +1,177 @@
+/* addbook.css */
+
+/* General Page Styling */
+.add-edit-book {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f7f9fc;
+    min-height: 60vh;
+    font-family: "Arial", sans-serif;
+  }
+  
+  /* Header Styling */
+  .header-box h1 {
+    color: #333;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  hr {
+    width: 50%;
+    border: 0.5px solid #ddd;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Box Styling */
+  .form-box {
+    width: 40%;
+    height: 50%;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 0px;
+  }
+  
+  input.form-control {
+    padding: 8px;
+    margin-bottom: 2px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: all 0.2s ease;
+  }
+  
+  input.form-control:focus {
+    border-color: #007bff;
+    background-color: #fff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+  }
+  
+  /* Add Button Styling */
+  button.btn {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  button.btn:hover {
+    background-color: #0056b3;
+  }
+  
+  button.btn:active {
+    background-color: #003f8a;
+  }
+  
+  button.btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .form-box {
+      width: 80%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .form-box {
+      width: 100%;
+      padding: 20px;
+    }
+  
+    .header-box h1 {
+      font-size: 1.8rem;
+    }
+  }
+  
+  /* addbook.css */
+
+/* Button to open the modal */
+.open-modal-btn {
+    margin: 20px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  
+  /* Modal form styling */
+  .form-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .form-group input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .form-group input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  button.btn-success {
+    background-color: #3398fd;
+    border: none;
+  }
+  
+  button.btn-success:hover {
+    background-color: #1f4c90;
+  }
+  
+  button.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+  }
+  
+  button.btn-secondary:hover {
+    background-color: #5a6268;
+  }
+  
+ .btn-add{
+    background-color: #333;
+    border: none;
+    margin-top: 15px;
+    color: wheat;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  .btn-add:hover{
+    background-color: #322718;
+    transition: background-color 0.3s ease;
+  }

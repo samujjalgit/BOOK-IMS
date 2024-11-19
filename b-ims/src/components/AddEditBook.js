@@ -1,8 +1,9 @@
 import { React, useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { db } from "./firebase"; // Ensure this is the correct Firestore import
+import { db } from "./firebase";
+import { collection, addDoc, doc, updateDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 import "./style/addbook.css";
-import { collection, addDoc, doc, updateDoc } from "firebase/firestore"; // Firestore methods
 
 function AddEditBookModal({ show, handleClose, bookToEdit }) {
   const [bookTitle, setBookTitle] = useState("");
@@ -12,9 +13,8 @@ function AddEditBookModal({ show, handleClose, bookToEdit }) {
   const [bookStock, setBookStock] = useState(0);
   const [bookDesc, setBookDesc] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false); // To show success message
+  const [success, setSuccess] = useState(false);
 
-  // Pre-fill form data when editing a book
   useEffect(() => {
     if (bookToEdit) {
       setBookTitle(bookToEdit.title || "");
@@ -24,7 +24,6 @@ function AddEditBookModal({ show, handleClose, bookToEdit }) {
       setBookStock(bookToEdit.stock || 0);
       setBookDesc(bookToEdit.description || "");
     } else {
-      // Clear form when adding a new book
       setBookTitle("");
       setBookAuthor("");
       setBookGenre("");
@@ -44,8 +43,17 @@ function AddEditBookModal({ show, handleClose, bookToEdit }) {
     setError("");
 
     try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      if (!user) {
+        setError("You must be logged in to add or edit a book.");
+        return;
+      }
+
+      const userEmail = user.email;
+
       if (bookToEdit) {
-        // Update existing book
         const bookRef = doc(db, "books", bookToEdit.id);
         await updateDoc(bookRef, {
           title: bookTitle,
@@ -56,7 +64,6 @@ function AddEditBookModal({ show, handleClose, bookToEdit }) {
           description: bookDesc,
         });
       } else {
-        // Add new book
         await addDoc(collection(db, "books"), {
           title: bookTitle,
           author: bookAuthor,
@@ -64,6 +71,7 @@ function AddEditBookModal({ show, handleClose, bookToEdit }) {
           price: parseFloat(bookPrice),
           stock: parseInt(bookStock),
           description: bookDesc,
+          userEmail: userEmail,
           createdAt: new Date(),
         });
       }
@@ -87,6 +95,7 @@ function AddEditBookModal({ show, handleClose, bookToEdit }) {
       <Modal.Body>
         <div className="form-box">
           <form autoComplete="off" className="form-group" onSubmit={handleSave}>
+            {/* Form fields */}
             <label htmlFor="book-title">Book Title</label>
             <input
               type="text"

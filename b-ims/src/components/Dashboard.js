@@ -1,62 +1,65 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, onSnapshot, query, doc, deleteDoc, updateDoc } from "firebase/firestore"; // Firestore imports
+import { collection, onSnapshot, query, doc, deleteDoc, updateDoc, where } from "firebase/firestore";
 import AddEditBookModal from "./AddEditBook";
 import { db } from "./firebase";
 import "./style/Dashboard.css";
 import "./style/landing.css";
+import { getAuth } from "firebase/auth";
 
 function Dashboard() {
   const navigate = useNavigate();
-
   const [showAddEditModal, setShowAddEditModal] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [books, setBooks] = useState([]);
-  const [selectedBooks, setSelectedBooks] = useState([]); // State to store selected books
-  const [isRemoving, setIsRemoving] = useState(false); // State for remove mode
-  const [isUpdating, setIsUpdating] = useState(false); // State for update mode
-  const [bookToEdit, setBookToEdit] = useState(null); // Book being edited
+  const [selectedBooks, setSelectedBooks] = useState([]);
+  const [isRemoving, setIsRemoving] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [bookToEdit, setBookToEdit] = useState(null);
+  const [userEmail, setUserEmail] = useState(null); // Stores logged-in user's email
 
-  // Fetch books from Firestore
   useEffect(() => {
-    const q = query(collection(db, "books"));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const fetchedBooks = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setBooks(fetchedBooks);
+    const auth = getAuth();
+    const unsubscribeAuth = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUserEmail(user.email);
+
+        // Query books by the logged-in user's email
+        const booksQuery = query(collection(db, "books"), where("userEmail", "==", user.email));
+        const unsubscribeBooks = onSnapshot(booksQuery, (snapshot) => {
+          const fetchedBooks = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setBooks(fetchedBooks);
+        });
+
+        return () => unsubscribeBooks();
+      } else {
+        setUserEmail(null);
+      }
     });
 
-    return () => unsubscribe();
+    return () => unsubscribeAuth();
   }, []);
 
   const handleShowAddEditModal = () => setShowAddEditModal(true);
   const handleCloseAddEditModal = () => {
     setShowAddEditModal(false);
-    setBookToEdit(null); // Clear the book to edit when the modal is closed
+    setBookToEdit(null);
   };
 
-  const goToProfile = () => {
-    navigate("/profile");
-  };
-
-  const goToAbout = () => {
-    navigate("/about");
-  };
-
-  const toggleDropdown = () => {
-    setDropdownOpen((prevState) => !prevState);
-  };
-
+  const goToProfile = () => navigate("/profile");
+  const goToAbout = () => navigate("/about");
+  const toggleDropdown = () => setDropdownOpen((prevState) => !prevState);
   const toggleRemoveMode = () => {
     setIsRemoving((prevState) => !prevState);
-    setSelectedBooks([]); // Clear selections when toggling
+    setSelectedBooks([]);
   };
 
   const toggleUpdateMode = () => {
     setIsUpdating((prevState) => !prevState);
-    setSelectedBooks([]); // Clear selections when toggling
+    setSelectedBooks([]);
   };
 
   const handleSelectBook = (bookId) => {
@@ -76,8 +79,8 @@ function Dashboard() {
         deleteDoc(doc(db, "books", bookId))
       );
       await Promise.all(promises);
-      setSelectedBooks([]); // Clear selections after deletion
-      setIsRemoving(false); // Exit remove mode
+      setSelectedBooks([]);
+      setIsRemoving(false);
       alert("Selected books removed successfully!");
     } catch (err) {
       console.error("Error removing books: ", err);
@@ -86,7 +89,7 @@ function Dashboard() {
   };
 
   const handleEditBook = (book) => {
-    setBookToEdit(book); // Pass the selected book to the modal
+    setBookToEdit(book);
     setShowAddEditModal(true);
   };
 
@@ -100,6 +103,14 @@ function Dashboard() {
       alert("Failed to update book details. Please try again.");
     }
   };
+
+  if (!userEmail) {
+    return (
+      <div className="error-message">
+        <p>User not logged in. Please log in to view your books.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="dashboard-container">
@@ -128,7 +139,7 @@ function Dashboard() {
           <button className="dropdown" onClick={goToAbout}>
             About Us
           </button>
-          <button onClick={goToProfile}>Profile</button>
+          <button className="dropdown" onClick={goToProfile}>Profile</button>
         </nav>
       </header>
 
@@ -153,21 +164,11 @@ function Dashboard() {
                     <strong>{book.title}</strong>
                   </h1>
                 </div>
-                <p>
-                  <strong>Author:</strong> {book.author}
-                </p>
-                <p>
-                  <strong>Genre:</strong> {book.genre}
-                </p>
-                <p>
-                  <strong>Description:</strong> {book.description}
-                </p>
-                <p>
-                  <strong>Price:</strong> Rs {book.price.toFixed(2)}
-                </p>
-                <p>
-                  <strong>Stock:</strong> {book.stock}
-                </p>
+                <p><strong>Author:</strong> {book.author}</p>
+                <p><strong>Genre:</strong> {book.genre}</p>
+                <p><strong>Description:</strong> {book.description}</p>
+                <p><strong>Price:</strong> Rs {book.price.toFixed(2)}</p>
+                <p><strong>Stock:</strong> {book.stock}</p>
                 <p>
                   <strong>Added on:</strong>{" "}
                   {new Date(book.createdAt.seconds * 1000).toLocaleDateString()}
@@ -183,7 +184,7 @@ function Dashboard() {
               </div>
             ))
           ) : (
-            <p>No books available. Add some to get started!</p>
+            <p><b>No books available. Add some to get started!</b></p>
           )}
         </div>
         {isRemoving && (
@@ -201,7 +202,7 @@ function Dashboard() {
           show={showAddEditModal}
           handleClose={handleCloseAddEditModal}
           bookToEdit={bookToEdit}
-          handleSave={handleUpdateBook} // Handle update logic
+          handleSave={handleUpdateBook}
         />
       )}
     </div>

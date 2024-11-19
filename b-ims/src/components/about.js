@@ -22,20 +22,58 @@ function About() {
           <button className="dropdown" onClick= {goToDash}>
               Dashboard
             </button>
-          <button onClick={goToProfile}>Profile</button>
+          <button className="dropdown" onClick={goToProfile}>Profile</button>
         </nav>
       </header>
+  
       {/* Hero Section */}
       <section className="hero">
-        <div className="badge">📚 BOOKS SIMPLIFIED</div>
-        <h1>
-          Book <span className="highlight">Inventory Management</span><br/>with Ease
-        </h1>
-        <p className="hero-description">
-          Manage, organize your inventory with precision.
-        </p>
-        <img src = {GirlImg} alt="3d-img"></img>
-      </section>
+        <h1 className="hero-title">
+        Expl🔎re your stories <br /> at our book📖shelf.
+      </h1>
+      <p className="hero-subtitle">
+        Get the cleanest book inventory system
+      </p>
+      <div className="hero-email-signup">
+        <input
+          type="email"
+          placeholder="Your Email"
+          className="email-input"
+        />
+        <button className="signup-btn">Contact</button>
+      </div>
+    </section>
+      {/* From Uiverse.io by gharsh11032000 */ }
+      <div class = "cards-container">
+      <div class="card">
+        <div class="content">
+          
+          <p class="para">
+            <h1>📝</h1>
+          Easily add book details like title, author, genre, price, stock, and description. Keep your inventory updated with just a few clicks.
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="content">
+          <p class="para">
+            <h1>📊</h1>
+          Keep your inventory organized by editing existing book details or removing books that are no longer available. Simplify inventory management with minimal effort.
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="content">
+          
+          <p class="para">
+            <h1>🔎</h1>
+          Browse all the books in your inventory in one place. Quickly check book details like stock, price, and description to stay on top of your inventory.
+          </p>
+        </div>
+      </div>
+      </div>
+
+
 
       {/* Trusted By Section */}
       <section className="trusted-by">
@@ -52,3 +90,6 @@ function About() {
 }
 
 export default About;
+
+
+

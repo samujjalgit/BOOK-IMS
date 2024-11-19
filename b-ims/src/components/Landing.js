@@ -16,7 +16,7 @@ function Landing() {
   };
 
   return (
-    <div className="dashboard-container">
+    <div className="landing">
       {/* Header Section */}
       <header className="dashboard-header">
         <h1 className="dashboard-title">B-IMS</h1>
@@ -44,7 +44,7 @@ function Landing() {
         {/* Call to Action */}
         <div className="call-to-action">
           <p>Check your inventory</p>
-          <button className="cta-button">Get Started</button>
+          <button className="cta-button" onClick={goToLogin}>Get Started</button>
         </div>
       </main>
     </div>

@@ -13,7 +13,7 @@ import Profile from "./components/Profile";
 import Settings from "./components/Settings";
 import Help from "./components/Help";
 import About from "./components/about";
-import Modal from './components/modals/Modal';
+// import Modal from './components/modals/Modal';
 
 function App() {
   return (

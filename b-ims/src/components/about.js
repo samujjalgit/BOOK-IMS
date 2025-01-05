@@ -20,7 +20,7 @@ function About() {
         <h1 className="dashboard-title">B-IMS</h1>
         <nav className="dashboard-nav">
           <button className="dropdown" onClick= {goToDash}>
-              Dashboard
+              Store
             </button>
           <button className="dropdown" onClick={goToProfile}>Profile</button>
         </nav>

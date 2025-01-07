@@ -3,7 +3,6 @@ import { onSnapshot, collection, doc, updateDoc, deleteDoc } from "firebase/fire
 import { db } from "./firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import "./style/cart.css";
-import Dashboard from "./Dashboard";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
@@ -85,6 +84,10 @@ const Cart = () => {
 
   const total = subtotal - discount + subtotal * 0.04;
 
+  const proceedToCheckout = () => {
+    navigate("/checkout"); // Navigate to the checkout page
+  };
+
   return (
     <div className="cart-container">
       <h2 className="cart-header">Shopping Cart</h2>
@@ -124,7 +127,9 @@ const Cart = () => {
           <p>Tax: ₹ {(subtotal * 0.04).toFixed(2)}</p>
           <h4>Total: ₹ {total.toFixed(2)}</h4>
         </div>
-        <button className="checkout-button">Proceed to checkout</button>
+        <button className="checkout-button" onClick={proceedToCheckout}>
+          Proceed to checkout
+        </button>
         <button className="continue-shopping-button" onClick={GoToDashboard}>Continue shopping</button>
       </div>
     </div>
